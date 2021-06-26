@@ -4,7 +4,8 @@
 }
 
 :root {
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif,
+    Apple Color Emoji, Segoe UI Emoji;
   font-size: 1rem;
   --user-font-scale: 1rem - 16px;
   font-size: clamp(0.875rem, 0.4626rem + 1.0309vw + var(--user-font-scale), 1.125rem);
@@ -20,9 +21,96 @@ body {
   color: #111827;
 }
 
+header {
+  margin-bottom: 50px;
+  padding-bottom: 50px;
+  border-bottom: 2px solid #e5eaef;
+  text-align: center;
+}
+
+h2 {
+  font-weight: 500;
+  margin-bottom: 30px;
+}
+
+main {
+  max-width: 1200px;
+  padding: 20px;
+}
+
+.cart {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  padding: 10px;
+  border-radius: 10px;
+  border: 2px solid #e5eaef;
+  text-decoration: none;
+}
+
+.products {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 0;
+}
+
+.product {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  margin: 10px;
+  width: 200px;
+  height: 250px;
+  list-style-type: none;
+  border: 2px solid #e5eaef;
+  border-radius: 10px;
+  box-shadow: 0 10px 15px -10px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.5s;
+}
+.product:hover {
+  box-shadow: 0 20px 15px -10px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+}
+
+.product h2 {
+  padding: 5px;
+  color: #435a70;
+  font-size: 1.2em;
+  text-align: center;
+}
+
+.product p {
+  padding: 5px;
+  font-size: 0.8em;
+  opacity: 0.6;
+  text-overflow: ellipsis;
+}
+
+.product .frame {
+  width: 180px;
+  height: 100px;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.product img {
+  border-radius: 10px;
+  max-width: 200px;
+}
+
 @media (prefers-color-scheme: dark) {
   body {
-    background: #111827;
+    background: #376fd6;
+    color: #fff;
+  }
+  .product {
+    background: #5890f3;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+  }
+  .product h2 {
     color: #fff;
   }
 }
