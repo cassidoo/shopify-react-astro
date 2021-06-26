@@ -121,21 +121,25 @@ main {
 }
 
 .product img {
-  border-radius: 10px;
   max-width: 300px;
+  border-radius: 10px;
 }
 
 .product-page {
   display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .product-img img {
+  padding: 0 10px;
   max-width: 500px;
   border-radius: 10px;
 }
 
 .product-copy {
-  padding: 0 20px;
+  padding: 0 10px;
+  max-width: 500px;
 }
 
 .product-copy p {
