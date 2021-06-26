@@ -1,0 +1,52 @@
+---
+const { collection } = Astro.props;
+import ProductPageContent from '../components/ProductPageContent.jsx';
+import pullData from '../utils/getProducts.js'
+
+export async function createCollection() {
+  let products = await pullData();
+
+  return {
+    // `routes` defines the total collection of routes as data objects.
+    routes: products.body.map((p, i) => {
+      const params = {prod: p.node.handle, index: i};
+      return params;
+    }),
+    permalink: ({ params }) => { 
+      return `/product/${params.prod}`
+    },
+    async data({ params }) {
+      return products.body.filter((p) => {
+        return p.node.handle === params.prod;
+      });
+    },
+    pageSize: Infinity,
+  };
+}
+---
+
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Cheese and Meat Shop</title>
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+
+    <link rel="stylesheet" href="/style/global.css">
+    <link rel="stylesheet" href="/style/home.css">
+</head>
+<body>
+    <main>
+        <header>
+            <h1>Shoperoni</h1>
+            <h2>Shop for literally the best products in the world, right here.</h2>
+        </header>
+        <a class="home" href="/">Go back</a>
+        <a class="cart" href="https://github.com">Shopping Cart</a>
+
+        <ProductPageContent product={collection.data[0].node} />
+    </main>
+</body>
+</html>

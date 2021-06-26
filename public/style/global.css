@@ -28,7 +28,7 @@ header {
   text-align: center;
 }
 
-h2 {
+header h2 {
   font-weight: 500;
   margin-bottom: 30px;
 }
@@ -44,8 +44,28 @@ main {
   right: 10px;
   padding: 10px;
   border-radius: 10px;
-  border: 2px solid #e5eaef;
   text-decoration: none;
+
+  border: 2px solid #5890f3;
+  color: #5890f3;
+}
+
+.home {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  padding: 10px;
+  border-radius: 10px;
+  text-decoration: none;
+
+  border: 2px solid #5890f3;
+  color: #5890f3;
+}
+
+.cart:hover,
+.home:hover {
+  background: #5890f3;
+  color: #e5eaef;
 }
 
 .products {
@@ -75,6 +95,10 @@ main {
   cursor: pointer;
 }
 
+.product a {
+  text-decoration: none;
+}
+
 .product h2 {
   padding: 5px;
   color: #435a70;
@@ -98,7 +122,40 @@ main {
 
 .product img {
   border-radius: 10px;
-  max-width: 200px;
+  max-width: 300px;
+}
+
+.product-page {
+  display: flex;
+}
+
+.product-img img {
+  max-width: 500px;
+  border-radius: 10px;
+}
+
+.product-copy {
+  padding: 0 20px;
+}
+
+.product-copy p {
+  margin: 20px 0;
+}
+
+.product-copy button {
+  padding: 10px;
+  background: transparent;
+  border-radius: 10px;
+  border: 2px solid #5890f3;
+  color: #5890f3;
+  font-size: 1em;
+}
+
+.product-copy button:hover,
+.product-copy button:focus {
+  background: #5890f3;
+  color: #e5eaef;
+  cursor: pointer;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -112,5 +169,21 @@ main {
   }
   .product h2 {
     color: #fff;
+  }
+  .home,
+  .cart {
+    border: 2px solid #e5eaef;
+    color: #e5eaef;
+  }
+  .product-copy button {
+    border: 2px solid #e5eaef;
+    color: #e5eaef;
+  }
+  .home:hover,
+  .cart:hover,
+  .product-copy button:hover,
+  .product-copy button:focus {
+    background: #e5eaef;
+    color: #5890f3;
   }
 }
