@@ -1,5 +1,7 @@
 # Shopify + Astro + React
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/00c79ab2-364d-4c1d-923b-ed0a9a3b4d2b/deploy-status)](https://app.netlify.com/sites/shopify-astro/deploys)
+
 A demo of a Shopify site using [Astro](https://astro.build) and React.
 
 ## Commands
