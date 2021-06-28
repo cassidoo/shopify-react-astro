@@ -125,8 +125,10 @@ a {
 }
 
 .product img {
-  max-width: 300px;
+  width: 100%;
   border-radius: 10px;
+  object-fit: cover;
+  height: 100%;
 }
 
 .product-page {
