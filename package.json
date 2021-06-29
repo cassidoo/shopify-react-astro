@@ -1,5 +1,5 @@
 {
-  "name": "@astrojs/starter-kit",
+  "name": "shopify-react-astro",
   "version": "0.0.1",
   "private": true,
   "scripts": {
