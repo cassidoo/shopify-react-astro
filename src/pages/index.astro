@@ -4,6 +4,18 @@ import pullData from '../utils/getProducts.js'
 
 let products = await pullData();
 
+/** 
+  * This hits a function when running `netlify dev`!
+  * `import.meta.env` is configured in `snowpack.config.json`
+  */
+try {
+  const { message } = await fetch(new URL(`.netlify/functions/hello`, import.meta.env.NETLIFY_URL)).then(res => res.json());
+  console.log(message)
+} catch (e) {
+  // Netlify's server takes a few seconds to start up
+  // Ignore failures until it's ready!
+}
+
 ---
 
 <!doctype html>
