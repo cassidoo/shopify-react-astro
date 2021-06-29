@@ -20,6 +20,10 @@ exports.createCartWithItem = async ({ itemId, quantity }) => {
                       ... on ProductVariant {
                         id
                         title
+                        priceV2 {
+                          amount
+                          currencyCode
+                        }
                         product {
                           id
                           title

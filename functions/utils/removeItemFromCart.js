@@ -21,6 +21,14 @@ exports.removeItemFromCart = async ({ cartId, lineId }) => {
                       ... on ProductVariant {
                         id
                         title
+                        priceV2 {
+                          amount
+                          currencyCode
+                        }
+                        product {
+                          title
+                          handle
+                        }
                       }
                     }
                   }

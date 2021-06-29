@@ -1,17 +1,20 @@
 /**
- * API endpoint to get items from an existing cart
+ * API Endpoint
  *
- * EXAMPLE:
+ * * Purpose: Get items from an existing cart
+ * @param {string} cartId
  *
- * Get existing cart
+ * Example:
  *```
- * fetch('/.netlify/functions/add-to-cart', {
+ * fetch('/.netlify/functions/get-cart', {
  *   method: 'POST',
- *   body: JSON.stringify({
- *     cartId: 123
- *   })
+ *   body: JSON.stringify({ cartId: '12345' })
  * })
  * ```
+ *
+ * ! POST method is intentional for future enhancement
+ *
+ * TODO: Add enhancement for pagination
  */
 
 const { postToShopify } = require('./utils/postToShopify')
@@ -20,6 +23,9 @@ exports.handler = async (event) => {
   const { cartId } = JSON.parse(event.body)
 
   try {
+    console.log('--------------------------------')
+    console.log('Retrieving existing cart...')
+    console.log('--------------------------------')
     const shopifyResponse = await postToShopify({
       query: `
         query getCart($cartId: ID!) {
@@ -34,6 +40,14 @@ exports.handler = async (event) => {
                     ... on ProductVariant {
                       id
                       title
+                      priceV2 {
+                        amount
+                        currencyCode
+                      }
+                      product {
+                        title
+                        handle
+                      }
                     }
                   }
                 }

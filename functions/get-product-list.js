@@ -1,7 +1,27 @@
+/**
+ * API Endpoint
+ *
+ * Purpose: Fetch first 100 products of the store
+ *
+ * Example:
+ * ```
+ * fetch('/.netlify/functions/get-product-list', {
+ *   method: 'POST'
+ * })
+ * ```
+ *
+ * ! POST method is intentional for future enhancement
+ *
+ * TODO: Add enhancement for pagination
+ */
+
 const { postToShopify } = require('./utils/postToShopify')
 
 exports.handler = async () => {
   try {
+    console.log('--------------------------------')
+    console.log('Retrieving product list...')
+    console.log('--------------------------------')
     const shopifyResponse = await postToShopify({
       query: `
         query getProductList {
