@@ -6,7 +6,7 @@ A demo of a Shopify site using [Astro](https://astro.build) and React.
 
 ## Commands
 
-All commands are run from the root of the project, from a terminal:
+All commands are run from the root of the project, from a terminal. Make sure you have the [Netlify CLI](https://docs.netlify.com/cli/get-started/) installed so the serverless functions can work properly!
 
 | Command         | Action                                      |
 | :-------------- | :------------------------------------------ |

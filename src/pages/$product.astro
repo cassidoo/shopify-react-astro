@@ -1,14 +1,18 @@
 ---
 const { collection } = Astro.props;
 import ProductPageContent from '../components/ProductPageContent.jsx';
-import pullData from '../utils/getProducts.js'
 
 export async function createCollection() {
-  let products = await pullData();
+  // let products = await pullData();
+
+  let products = await fetch(`${import.meta.env.NETLIFY_URL}/.netlify/functions/get-product-list`)
+    .then(res => res.json()).then((response) => {
+      return response.products.edges
+    });
 
   return {
     // `routes` defines the total collection of routes as data objects.
-    routes: products.body.map((p, i) => {
+    routes: products.map((p, i) => {
       const params = {prod: p.node.handle, index: i};
       return params;
     }),
@@ -16,7 +20,7 @@ export async function createCollection() {
       return `/product/${params.prod}`
     },
     async data({ params }) {
-      return products.body.filter((p) => {
+      return products.filter((p) => {
         return p.node.handle === params.prod;
       });
     },
