@@ -7,7 +7,7 @@
  *
  * Example:
  * ```
- * fetch('/.netlify/functions/remove-from-cart, {
+ * fetch('/.netlify/functions/remove-from-cart', {
  *   method: 'POST',
  *   body: JSON.stringify({
  *     cartId: 'S9Qcm9kdWN0VmFyaWFudC8zOTc0NDEyMDEyNzY5NA',
@@ -17,25 +17,25 @@
  * ```
  */
 
-const { removeItemFromCart } = require('./utils/removeItemFromCart')
+const { removeItemFromCart } = require('./utils/removeItemFromCart');
 
 exports.handler = async (event) => {
-  const { cartId, lineId } = JSON.parse(event.body)
+  const { cartId, lineId } = JSON.parse(event.body);
 
   try {
-    console.log('--------------------------------')
-    console.log('Removing item from cart...')
-    console.log('--------------------------------')
+    console.log('--------------------------------');
+    console.log('Removing item from cart...');
+    console.log('--------------------------------');
     const shopifyResponse = await removeItemFromCart({
       cartId,
       lineId,
-    })
+    });
 
     return {
       statusCode: 200,
       body: JSON.stringify(shopifyResponse.cartLinesRemove.cart),
-    }
+    };
   } catch (error) {
-    console.log(error)
+    console.log(error);
   }
-}
+};
