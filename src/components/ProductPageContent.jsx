@@ -1,16 +1,16 @@
-import React, { Fragment, useEffect, useState } from 'react'
+import React, { Fragment, useEffect, useState } from 'react';
 
 function formatPrice(num) {
   return parseFloat(num).toLocaleString('en-US', {
     style: 'currency',
     currency: 'USD',
-  })
+  });
 }
 
 function getCurrentVariantObject(vars, id) {
   return vars.filter((v) => {
-    return v.node.id === id
-  })[0]
+    return v.node.id === id;
+  })[0];
 }
 
 function VariantForm({ vars, current, pick, setQ }) {
@@ -27,14 +27,14 @@ function VariantForm({ vars, current, pick, setQ }) {
                   id={v.node.id}
                   defaultChecked={index === 0}
                   onChange={() => {
-                    pick(v.node.id)
+                    pick(v.node.id);
                   }}
                 />
                 {v.node.title}
               </label>
               <br />
             </Fragment>
-          )
+          );
         })}
       <input
         type="number"
@@ -43,42 +43,41 @@ function VariantForm({ vars, current, pick, setQ }) {
         min={1}
         max={getCurrentVariantObject(vars, current).node.quantityAvailable}
         onChange={(e) => {
-          setQ(e.target.value)
+          setQ(e.target.value);
         }}
       />
     </form>
-  )
+  );
 }
 
 export default function ProductPageContent({ product }) {
-  let vars = product.variants.edges
+  let vars = product.variants.edges;
 
   // Chosen variant ID
-  const [chosenVariant, setChosenVariant] = useState(vars[0].node.id)
+  const [chosenVariant, setChosenVariant] = useState(vars[0].node.id);
   // Quantity of the chosen variant
-  const [quantity, setQuantity] = useState(1)
-  const [cost, setCost] = useState('')
+  const [quantity, setQuantity] = useState(1);
+  const [cost, setCost] = useState('');
 
   useEffect(() => {
     let variantPrice = getCurrentVariantObject(vars, chosenVariant).node.priceV2
-      .amount
+      .amount;
 
-    setCost(formatPrice(variantPrice * quantity))
-    console.log('current variant', chosenVariant)
-  }, [chosenVariant, quantity, cost])
+    setCost(formatPrice(variantPrice * quantity));
+  }, [chosenVariant, quantity, cost]);
 
-  let image = product.images.edges[0].node
+  let image = product.images.edges[0].node;
 
   let handleAddToCart = async () => {
-    console.log('Adding to cart')
+    console.log('--- Adding to cart ---');
 
-    const localCart = window.localStorage.getItem('astroCartId')
+    const localCart = window.localStorage.getItem('astroCartId');
 
     const body = {
       cartId: localCart || '',
       itemId: chosenVariant,
       quantity: quantity,
-    }
+    };
 
     const cartResponse = await fetch(
       `${import.meta.env.NETLIFY_URL}/.netlify/functions/add-to-cart`,
@@ -87,14 +86,12 @@ export default function ProductPageContent({ product }) {
         body: JSON.stringify(body),
         headers: { 'Content-Type': 'application/json' },
       }
-    )
+    );
 
-    const data = await cartResponse.json()
-    console.log('Cart response', data)
-    window.localStorage.setItem('astroCartId', data.id)
-
-    return data
-  }
+    const data = await cartResponse.json();
+    window.localStorage.setItem('astroCartId', data.id);
+    return data;
+  };
 
   return (
     <div className="product-page">
@@ -122,5 +119,5 @@ export default function ProductPageContent({ product }) {
         )}
       </div>
     </div>
-  )
+  );
 }

@@ -1,9 +1,5 @@
 ---
-import ProductListing from '../components/ProductListing.jsx';
-
-let products = await fetch(`${import.meta.env.NETLIFY_URL}/.netlify/functions/get-product-list`).then(res => res.json()).then((response) => {
-    return response.products.edges
-  });
+import Cart from '../components/Cart.jsx';
 
 ---
 
@@ -22,14 +18,11 @@ let products = await fetch(`${import.meta.env.NETLIFY_URL}/.netlify/functions/ge
       <h1>Shoperoni</h1>
       <h2>Shop for literally the best products in the world, right here.</h2>
     </header>
-    
-    <a class="cart" href="/cart">Shopping Cart</a>
 
-    <ul class="products">
-      {products.map((p) => {
-        return <ProductListing product={p.node} />
-      })}
-    </ul>
+    <a class="home" href="/">Go back</a>
+    
+    <Cart:visible />
+
   </main>
 </body>
 </html>
