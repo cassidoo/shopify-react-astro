@@ -53,20 +53,48 @@ function VariantForm({ vars, current, pick, setQ }) {
 export default function ProductPageContent({ product }) {
   let vars = product.variants.edges
 
+  // Chosen variant ID
   const [chosenVariant, setChosenVariant] = useState(vars[0].node.id)
+  // Quantity of the chosen variant
   const [quantity, setQuantity] = useState(1)
   const [cost, setCost] = useState('')
-
-  console.log(vars)
 
   useEffect(() => {
     let variantPrice = getCurrentVariantObject(vars, chosenVariant).node.priceV2
       .amount
 
     setCost(formatPrice(variantPrice * quantity))
+    console.log('current variant', chosenVariant)
   }, [chosenVariant, quantity, cost])
 
   let image = product.images.edges[0].node
+
+  let handleAddToCart = async () => {
+    console.log('Adding to cart')
+
+    const localCart = window.localStorage.getItem('astroCartId')
+
+    const body = {
+      cartId: localCart || '',
+      itemId: chosenVariant,
+      quantity: quantity,
+    }
+
+    const cartResponse = await fetch(
+      `${import.meta.env.NETLIFY_URL}/.netlify/functions/add-to-cart`,
+      {
+        method: 'post',
+        body: JSON.stringify(body),
+        headers: { 'Content-Type': 'application/json' },
+      }
+    )
+
+    const data = await cartResponse.json()
+    console.log('Cart response', data)
+    window.localStorage.setItem('astroCartId', data.id)
+
+    return data
+  }
 
   return (
     <div className="product-page">
@@ -86,9 +114,11 @@ export default function ProductPageContent({ product }) {
         />
 
         {product.totalInventory > 0 ? (
-          <button>Add to Cart</button>
+          <button onClick={handleAddToCart}>Add to Cart</button>
         ) : (
-          <button disabled>Out of Stock</button>
+          <button className="disabled" disabled>
+            Out of Stock
+          </button>
         )}
       </div>
     </div>

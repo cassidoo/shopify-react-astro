@@ -176,6 +176,10 @@ a {
   cursor: pointer;
 }
 
+.product-copy button.disabled {
+  cursor: not-allowed;
+}
+
 @media (prefers-color-scheme: dark) {
   body {
     background: #376fd6;
