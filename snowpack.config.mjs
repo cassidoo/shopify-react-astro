@@ -4,7 +4,7 @@ export default {
    */
   env: {
     NETLIFY_URL: process.env.NETLIFY
-      ? 'https://shopify-astro.netlify.app/'
+      ? process.env.URL
       : 'http://localhost:8888',
   },
 };
