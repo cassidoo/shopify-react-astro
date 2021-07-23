@@ -29,7 +29,6 @@ export default function Cart() {
       )
         .then((res) => res.json())
         .then((response) => {
-          console.log(response);
           setProducts(response.cart.lines.edges);
           setCost(response.cart.estimatedCost);
           return response;
@@ -41,12 +40,17 @@ export default function Cart() {
     <div>
       {showProducts ? (
         <div>
-          Products
-          <CartTable cartItems={products} cartId={cartId} />
+          <CartTable
+            cartItems={products}
+            cartId={cartId}
+            removeItem={setProducts}
+          />
           <CartTotal cost={cost} />
         </div>
       ) : (
-        <div>No products to show! Get shopping!</div>
+        <div className="cart-page-message">
+          No products to show! Get shopping!
+        </div>
       )}
     </div>
   );

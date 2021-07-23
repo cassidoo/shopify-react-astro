@@ -1,5 +1,7 @@
 ---
 const { collection } = Astro.props;
+import Header from '../components/Header.jsx'
+import Footer from '../components/Footer.astro'
 import ProductPageContent from '../components/ProductPageContent.jsx';
 
 export async function createCollection() {
@@ -34,21 +36,18 @@ export async function createCollection() {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Buy {collection.data[0].node.title}</title>
+    <title>Shoperoni | Buy {collection.data[0].node.title}</title>
 
     <link rel="icon" type="image/svg+xml" href="/favicon.svg">
     <link rel="stylesheet" href="/style/global.css">
 </head>
 <body>
-    <main>
-        <header>
-            <h1>Shoperoni</h1>
-            <h2>Shop for literally the best products in the world, right here.</h2>
-        </header>
-        <a class="home" href="/">Go back</a>
-        <a class="cart" href="/cart">Shopping Cart</a>
-
-        <ProductPageContent:visible product={collection.data[0].node} />
-    </main>
+  <Header client:load />
+  <div class="product-page">
+    <article>
+      <ProductPageContent:visible product={collection.data[0].node} />
+    </article>
+  </div>
+  <Footer />
 </body>
 </html>

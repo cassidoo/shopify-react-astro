@@ -13,7 +13,7 @@ function itemTotal(price, quantity) {
   return formatPrice(totalPrice, price.currencyCode);
 }
 
-export default function CartTable({ cartItems, cartId }) {
+export default function CartTable({ cartItems, cartId, removeItem }) {
   let removeItemFromCart = (itemId) => {
     fetch(
       `${import.meta.env.NETLIFY_URL}/.netlify/functions/remove-from-cart`,
@@ -28,7 +28,8 @@ export default function CartTable({ cartItems, cartId }) {
       .then((response) => response.json())
       .then((response) => {
         console.log('--- Item deleted ---');
-        console.log(response);
+
+        removeItem(response.lines.edges);
         return response;
       });
   };
@@ -47,10 +48,15 @@ export default function CartTable({ cartItems, cartId }) {
       <tbody>
         {cartItems.map((item, index) => {
           item = item.node;
+
+          let merchandiseTitle =
+            item.merchandise.title === 'Default Title'
+              ? ''
+              : `(${item.merchandise.title})`;
           return (
             <tr className="cart-table-row" key={`cartItem${index}`}>
               <td className="cart-table-cell">
-                {item.merchandise.product.title} ({item.merchandise.title})
+                {item.merchandise.product.title} {merchandiseTitle}
               </td>
               <td className="cart-table-cell">
                 {formatPrice(
@@ -63,7 +69,13 @@ export default function CartTable({ cartItems, cartId }) {
                 {itemTotal(item.merchandise.priceV2, item.quantity)}
               </td>
               <td className="cart-table-cell">
-                <button>Remove Item</button>
+                <button
+                  onClick={() => {
+                    removeItemFromCart(item.id);
+                  }}
+                >
+                  Remove Item
+                </button>
               </td>
             </tr>
           );

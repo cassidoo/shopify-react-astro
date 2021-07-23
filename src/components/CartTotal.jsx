@@ -13,8 +13,6 @@ function formatPrice(num, currency) {
 export default function CartTotal({ cost }) {
   let subtotal, tax, total;
 
-  console.log(cost);
-
   subtotal = formatPrice(
     cost?.subtotalAmount?.amount,
     cost?.subtotalAmount?.currency

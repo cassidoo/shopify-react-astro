@@ -1,6 +1,7 @@
 ---
+import Header from '../components/Header.jsx'
+import Footer from '../components/Footer.astro'
 import Cart from '../components/Cart.jsx';
-
 ---
 
 <!doctype html>
@@ -8,21 +9,18 @@ import Cart from '../components/Cart.jsx';
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Cheese and Meat Shop</title>
+  <title>Shoperoni | Cart</title>
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
   <link rel="stylesheet" href="/style/global.css">
 </head>
 <body>
-  <main>
-    <header>
-      <h1>Shoperoni</h1>
-      <h2>Shop for literally the best products in the world, right here.</h2>
-    </header>
-
-    <a class="home" href="/">Go back</a>
-    
-    <Cart:visible />
-
+  <Header client:load />
+  <main class="cart-page">
+    <article class="cart-page-content">
+    <h1>Your cart</h1>
+      <Cart client:visible />
+    </article>
   </main>
+  <Footer />
 </body>
 </html>

@@ -1,4 +1,6 @@
 ---
+import Header from '../components/Header.jsx'
+import Footer from '../components/Footer.astro'
 import ProductListing from '../components/ProductListing.jsx';
 
 let products = await fetch(`${import.meta.env.NETLIFY_URL}/.netlify/functions/get-product-list`).then(res => res.json()).then((response) => {
@@ -12,24 +14,20 @@ let products = await fetch(`${import.meta.env.NETLIFY_URL}/.netlify/functions/ge
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Cheese and Meat Shop</title>
+  <title>Shoperoni</title>
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
   <link rel="stylesheet" href="/style/global.css">
 </head>
 <body>
+  <Header client:load />
   <main>
-    <header>
-      <h1>Shoperoni</h1>
-      <h2>Shop for literally the best products in the world, right here.</h2>
-    </header>
-    
-    <a class="cart" href="/cart">Shopping Cart</a>
-
-    <ul class="products">
+    <ul class="product-grid">
       {products.map((p) => {
         return <ProductListing product={p.node} />
       })}
     </ul>
   </main>
+
+  <Footer />
 </body>
 </html>
