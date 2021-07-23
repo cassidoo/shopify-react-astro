@@ -4,12 +4,23 @@
 
 A demo of a Shopify site using [Astro](https://astro.build) and React.
 
+## Customize and make it your own
+
+[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/cassidoo/shopify-react-astro)
+
+Clicking this button will clone the repo to your GitHub account and instantly deploy to Netlify. You will need to have the [Netlify CLI](https://cli.netlify.com/) installed, and a `.env` file at the top level of your project (after you clone) with the following:
+
+```bash
+SHOPIFY_STOREFRONT_API_TOKEN=example
+SHOPIFY_API_ENDPOINT=https://exampleshopify/graphql.json
+```
+
 ## Commands
 
 All commands are run from the root of the project, from a terminal. Make sure you have the [Netlify CLI](https://docs.netlify.com/cli/get-started/) installed so the serverless functions can work properly!
 
-| Command         | Action                                      |
-| :-------------- | :------------------------------------------ |
-| `npm install`   | Installs dependencies                       |
-| `npm run start` | Starts local dev server at `localhost:3000` |
-| `npm run build` | Build your production site to `./dist/`     |
+| Command         | Action                                  |
+| :-------------- | :-------------------------------------- |
+| `npm install`   | Installs dependencies                   |
+| `npm run start` | Starts local dev server                 |
+| `npm run build` | Build your production site to `./dist/` |
