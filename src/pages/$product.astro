@@ -43,7 +43,7 @@ export async function createCollection() {
   <Header />
   <div class="product-page">
     <article>
-      <ProductPageContent:visible product={collection.data[0].node} />
+      <ProductPageContent client:visible product={collection.data[0].node} />
     </article>
   </div>
   <Footer />
