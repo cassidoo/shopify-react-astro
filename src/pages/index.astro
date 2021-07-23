@@ -19,7 +19,7 @@ let products = await fetch(`${import.meta.env.NETLIFY_URL}/.netlify/functions/ge
   <link rel="stylesheet" href="/style/global.css">
 </head>
 <body>
-  <Header client:load />
+  <Header />
   <main>
     <ul class="product-grid">
       {products.map((p) => {

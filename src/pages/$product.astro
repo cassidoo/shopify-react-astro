@@ -42,7 +42,7 @@ export async function createCollection() {
     <link rel="stylesheet" href="/style/global.css">
 </head>
 <body>
-  <Header client:load />
+  <Header />
   <div class="product-page">
     <article>
       <ProductPageContent:visible product={collection.data[0].node} />
