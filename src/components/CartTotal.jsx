@@ -1,24 +1,21 @@
 import React from 'react';
-
-function formatPrice(num, currency) {
-  if (num === null) {
-    return '$0.00';
-  }
-  return parseFloat(num).toLocaleString('en-US', {
-    style: 'currency',
-    currency: currency || 'USD',
-  });
-}
+import { formatPriceWithDefault } from '../utilityFunctions';
 
 export default function CartTotal({ cost }) {
   let subtotal, tax, total;
 
-  subtotal = formatPrice(
+  subtotal = formatPriceWithDefault(
     cost?.subtotalAmount?.amount,
     cost?.subtotalAmount?.currency
   );
-  tax = formatPrice(cost?.totalTaxAmount, cost?.totalTaxAmount?.currency);
-  total = formatPrice(cost?.totalAmount?.amount, cost?.totalAmount?.currency);
+  tax = formatPriceWithDefault(
+    cost?.totalTaxAmount,
+    cost?.totalTaxAmount?.currency
+  );
+  total = formatPriceWithDefault(
+    cost?.totalAmount?.amount,
+    cost?.totalAmount?.currency
+  );
 
   return (
     <section className="cart-total">

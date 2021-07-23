@@ -1,11 +1,5 @@
 import React, { useEffect, useState } from 'react';
-
-function formatPrice(num) {
-  return parseFloat(num).toLocaleString('en-US', {
-    style: 'currency',
-    currency: 'USD',
-  });
-}
+import { formatPrice } from '../utilityFunctions';
 
 function getCurrentVariantObject(vars, id) {
   return vars.filter((v) => {

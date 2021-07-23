@@ -1,17 +1,5 @@
 import React from 'react';
-
-function formatPrice(num, currency) {
-  return parseFloat(num).toLocaleString('en-US', {
-    style: 'currency',
-    currency: currency || 'USD',
-  });
-}
-
-function itemTotal(price, quantity) {
-  const totalPrice = parseInt(price.amount) + parseInt(quantity);
-
-  return formatPrice(totalPrice, price.currencyCode);
-}
+import { formatPrice, itemTotal } from '../utilityFunctions';
 
 export default function CartTable({ cartItems, cartId, removeItem }) {
   let removeItemFromCart = (itemId) => {

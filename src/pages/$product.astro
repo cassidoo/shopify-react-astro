@@ -5,8 +5,6 @@ import Footer from '../components/Footer.astro'
 import ProductPageContent from '../components/ProductPageContent.jsx';
 
 export async function createCollection() {
-  // let products = await pullData();
-
   let products = await fetch(`${import.meta.env.NETLIFY_URL}/.netlify/functions/get-product-list`)
     .then(res => res.json()).then((response) => {
       return response.products.edges
