@@ -2,7 +2,7 @@
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/00c79ab2-364d-4c1d-923b-ed0a9a3b4d2b/deploy-status)](https://app.netlify.com/sites/shopify-astro/deploys)
 
-A demo of a Shopify site using [Astro](https://astro.build) and React.
+A demo of a Shopify site using [Astro](https://astro.build) and React. If you'd like to learn how it's built and how you can do the same, [check out this blog post](https://dev.to/netlify/build-a-modern-shopping-site-with-astro-and-serverless-functions-5326)!
 
 ## Customize and make it your own
 
