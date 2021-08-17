@@ -1,7 +1,7 @@
 ---
-import Header from '../components/Header.jsx'
-import Footer from '../components/Footer.astro'
-import ProductPageContent from '../components/ProductPageContent.jsx';
+import Header from '../../components/Header.jsx'
+import Footer from '../../components/Footer.astro'
+import ProductPageContent from '../../components/ProductPageContent.jsx';
 
 export async function getStaticPaths() {
   let products = await fetch(`${import.meta.env.NETLIFY_URL}/.netlify/functions/get-product-list`)
