@@ -1,32 +1,23 @@
 ---
-const { collection } = Astro.props;
 import Header from '../components/Header.jsx'
 import Footer from '../components/Footer.astro'
 import ProductPageContent from '../components/ProductPageContent.jsx';
 
-export async function createCollection() {
+export async function getStaticPaths() {
   let products = await fetch(`${import.meta.env.NETLIFY_URL}/.netlify/functions/get-product-list`)
     .then(res => res.json()).then((response) => {
       return response.products.edges
     });
 
-  return {
-    // `routes` defines the total collection of routes as data objects.
-    routes: products.map((p, i) => {
-      const params = {prod: p.node.handle, index: i};
-      return params;
-    }),
-    permalink: ({ params }) => { 
-      return `/product/${params.prod}`
-    },
-    async data({ params }) {
-      return products.filter((p) => {
-        return p.node.handle === params.prod;
-      });
-    },
-    pageSize: Infinity,
-  };
+  return products.map((p, i) => {
+    return {
+      params: {pid: p.node.handle},
+      props: {product: p},
+    };
+  });
 }
+
+const { product } = Astro.props;
 ---
 
 <!doctype html>
@@ -34,7 +25,7 @@ export async function createCollection() {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Shoperoni | Buy {collection.data[0].node.title}</title>
+    <title>Shoperoni | Buy {product.node.title}</title>
 
     <link rel="icon" type="image/svg+xml" href="/favicon.svg">
     <link rel="stylesheet" href="/style/global.css">
@@ -43,7 +34,7 @@ export async function createCollection() {
   <Header />
   <div class="product-page">
     <article>
-      <ProductPageContent client:visible product={collection.data[0].node} />
+      <ProductPageContent client:visible product={product.node} />
     </article>
   </div>
   <Footer />
