@@ -37,7 +37,7 @@ function VariantForm({ vars, current, pick, setQ }) {
         min={1}
         max={getCurrentVariantObject(vars, current).node.quantityAvailable}
         onChange={(e) => {
-          setQ(e.target.value);
+          setQ(parseInt(e.target.value));
         }}
       />
     </form>
