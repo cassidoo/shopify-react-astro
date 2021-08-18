@@ -38,7 +38,7 @@ export default function Cart() {
 
   return (
     <div>
-      {showProducts ? (
+      {showProducts && products.length > 0 ? (
         <div>
           <CartTable
             cartItems={products}
