@@ -3,7 +3,7 @@ import Header from '../../components/Header.jsx'
 // import Footer from '../../components/Footer.astro'
 // import ProductPageContent from '../../components/ProductPageContent.jsx';
 
-// export async function getStaticPaths() {
+export async function getStaticPaths() {
 //   let products = await fetch(`${import.meta.env.NETLIFY_URL}/.netlify/functions/get-product-list`)
 //     .then(res => res.json()).then((response) => {
 //       console.log('--- built product pages ---')
@@ -16,7 +16,8 @@ import Header from '../../components/Header.jsx'
 //       props: {product: p},
 //     };
 //   });
-// }
+  return { params: null, props: null}
+}
 
 // const { product } = Astro.props;
 ---
