@@ -1,23 +1,24 @@
 ---
 import Header from '../../components/Header.jsx'
-import Footer from '../../components/Footer.astro'
-import ProductPageContent from '../../components/ProductPageContent.jsx';
+// import Footer from '../../components/Footer.astro'
+// import ProductPageContent from '../../components/ProductPageContent.jsx';
 
-export async function getStaticPaths() {
-  let products = await fetch(`${import.meta.env.NETLIFY_URL}/.netlify/functions/get-product-list`)
-    .then(res => res.json()).then((response) => {
-      return response.products.edges
-    });
+// export async function getStaticPaths() {
+//   let products = await fetch(`${import.meta.env.NETLIFY_URL}/.netlify/functions/get-product-list`)
+//     .then(res => res.json()).then((response) => {
+//       console.log('--- built product pages ---')
+//       return response.products.edges
+//     });
 
-  return products.map((p, i) => {
-    return {
-      params: {pid: p.node.handle},
-      props: {product: p},
-    };
-  });
-}
+//   return products.map((p, i) => {
+//     return {
+//       params: {pid: p.node.handle},
+//       props: {product: p},
+//     };
+//   });
+// }
 
-const { product } = Astro.props;
+// const { product } = Astro.props;
 ---
 
 <!doctype html>
@@ -25,7 +26,7 @@ const { product } = Astro.props;
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Shoperoni | Buy {product.node.title}</title>
+    <!-- <title>Shoperoni | Buy {product.node.title}</title> -->
 
     <link rel="icon" type="image/svg+xml" href="/favicon.svg">
     <link rel="stylesheet" href="/style/global.css">
@@ -34,9 +35,9 @@ const { product } = Astro.props;
   <Header />
   <div class="product-page">
     <article>
-      <ProductPageContent client:visible product={product.node} />
+      <!-- <ProductPageContent client:visible product={product.node} /> -->
     </article>
   </div>
-  <Footer />
+  <!-- <Footer /> -->
 </body>
 </html>
