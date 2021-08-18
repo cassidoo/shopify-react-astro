@@ -9,7 +9,7 @@ export default function CartTotal({ cost }) {
     cost?.subtotalAmount?.currency
   );
   tax = formatPriceWithDefault(
-    cost?.totalTaxAmount,
+    cost?.totalTaxAmount?.amount,
     cost?.totalTaxAmount?.currency
   );
   total = formatPriceWithDefault(
